@@ -52,23 +52,24 @@ class User {
 			//console.log("username2",username)
 			//console.log(result[0].Password)
 			if (result == null ){
-				console.log("Login failed!")
+				console.log("Login failed!!!")
 				return null;
 			}
 			else{
 			// TODO: Validate password
 			const bcrypt = require("bcryptjs")
-            bcrypt.compare(password, result.HashedPassword).then(function(result) {
+            let compare = await bcrypt.compare(password, result.HashedPassword);
                 //result == true
             	//console.log(result);
-                if (result == true){
+                if (compare == true){
                     console.log("Login Successfully!")
 					return 1;
 				} 
                 else{
                     console.log("Login failed!")
-                }return 0;
-            })
+					return 0;
+                }
+            
 			}
 
 		// TODO: Return user object
